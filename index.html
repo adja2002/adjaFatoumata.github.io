@@ -66,7 +66,7 @@ html[lang="fr"] [lang="en"]:not(html), html[lang="en"] [lang="fr"]:not(html){dis
 .socials a:hover{border-color:var(--accent);color:var(--accent)}
 .portrait{position:relative;justify-self:center;width:min(380px,100%);aspect-ratio:4/5;max-width:100%}
 .portrait .frame{position:absolute;inset:0;border-radius:200px 200px var(--r) var(--r);background:var(--beige-2);overflow:hidden;display:grid;place-items:center}
-.portrait .frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.portrait .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;position:absolute;inset:0}
 .portrait .mono{font-family:var(--f-display);font-size:120px;color:var(--white);line-height:1}
 .portrait .ring{position:absolute;inset:-14px;border:1px solid var(--beige-2);border-radius:214px 214px 28px 28px;pointer-events:none}
 .portrait .chip{position:absolute;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:13px;box-shadow:0 14px 30px -18px rgba(42,35,30,.35);display:grid;gap:2px}
@@ -248,8 +248,6 @@ footer nav{display:flex;gap:18px}
         <span class="mono" aria-hidden="true">AN</span>
         <img src="img/photo.jpg" alt="Portrait d'Adja Fatoumata Ndao" onerror="this.remove()">
       </div>
-      <div class="chip c2"><b>0,74</b><span lang="fr">corrélation DIORES</span><span lang="en">DIORES correlation</span></div>
-      <div class="chip c1"><b>8</b><span lang="fr">projets data &amp; IA</span><span lang="en">data &amp; AI projects</span></div>
     </div>
   </div>
 </header>
@@ -260,7 +258,7 @@ footer nav{display:flex;gap:18px}
     <div class="about">
       <div>
         <p class="lead"><span lang="fr">Diplômée d'un Master Business Intelligence à Dakar, aujourd'hui en M1 Informatique à Lyon. J'aime transformer <em>un besoin métier</em> en solution data qui sert vraiment.</span><span lang="en">I hold a Master's in Business Intelligence from Dakar and I'm now in a Computer Science M1 in Lyon. I like turning <em>a business need</em> into a data solution people actually use.</span></p>
-        <p class="body"><span lang="fr">Mon projet phare, DIORES, aide les bacheliers sénégalais à choisir leur filière : des modèles de Machine Learning prédisent leurs chances de réussite, et un chatbot WhatsApp leur explique le résultat. J'utilise Claude Code au quotidien pour prototyper, coder et documenter plus vite.</span><span lang="en">My flagship project, DIORES, helps Senegalese high-school graduates choose their university track: Machine Learning models predict their chances of success, and a WhatsApp chatbot explains the result. I use Claude Code daily to prototype, code and document faster.</span></p>
+        <p class="body"><span lang="fr">Mon projet phare, DIORES, aide les bacheliers sénégalais à choisir leur filière : des modèles de Machine Learning prédisent leurs chances de sélection et de réussite, et un chatbot WhatsApp leur explique le résultat. J'utilise Claude Code au quotidien pour prototyper, coder et documenter plus vite.</span><span lang="en">My flagship project, DIORES, helps Senegalese high-school graduates choose their university track: Machine Learning models predict their chances of admission and success, and a WhatsApp chatbot explains the result. I use Claude Code daily to prototype, code and document faster.</span></p>
       </div>
       <div class="cards">
         <div class="card">
@@ -410,7 +408,7 @@ const CATS = [
 const PROJECTS = [
   {id:'diores', cat:'ia', featured:true, year:'2025 – 2026', repo:'Diores_chatbot_adja', cover:'img/streamlit-resultats.jpg',
    title:{fr:'DIORES : orienter les bacheliers avec l\'IA', en:'DIORES: guiding students with AI'},
-   short:{fr:'Modèles de prédiction de la réussite en L1 et chatbot WhatsApp RAG qui explique à chaque bachelier ses chances dans chaque filière.', en:'First-year success prediction models and a RAG WhatsApp chatbot that explains to each student their chances in every track.'},
+   short:{fr:'Modèles qui prédisent les chances de sélection et de réussite en L1, et chatbot WhatsApp RAG qui les explique à chaque bachelier, filière par filière.', en:'Models predicting chances of admission and first-year success, and a RAG WhatsApp chatbot that explains them to each student, track by track.'},
    stack:['Python','CatBoost','SHAP','LangChain','ChromaDB','Mistral','FastAPI','Twilio'],
    facts:[['0,74','0.74',{fr:'corrélation, contre 0,40 pour Campusen',en:'correlation, vs 0.40 for Campusen'}],['92 %','92%',{fr:'d\'amélioration max. du classement',en:'max. ranking improvement'}],['16 019','16,019',{fr:'dossiers fusionnés (2012 – 2018)',en:'merged records (2012 – 2018)'}]],
    problem:{fr:'À l\'UCAD, près de 91 000 étudiants se répartissent dans 600 formations et environ 66 % échouent en première année. L\'orientation actuelle repose surtout sur les notes du bac.', en:'At UCAD, about 91,000 students are spread across 600 programmes and around 66% fail their first year. Current orientation relies mostly on final exam grades.'},
