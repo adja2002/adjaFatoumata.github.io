@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adja Fatoumata Ndao</title>
+<meta name="description" content="Adja Fatoumata Ndao — Ingénieure Data & IA : Machine Learning, chatbots RAG/LLM et Business Intelligence. M1 Informatique, Université Lumière Lyon 2.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single page, sticky nav, numbered sections alternating white and beige; projects as filterable cards opening a detail panel. Deliberately light-only (white & beige). */
+:root{
+  color-scheme:light;
+  --white:#FFFFFF; --beige:#F5EFE6; --beige-2:#EADFCF; --line:#E6DCCD;
+  --ink:#2A231E; --muted:#776A5E; --accent:#9A6B3E; --accent-ink:#FFFFFF;
+  --f-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --f-body:"Manrope", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --wrap:1140px; --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before{animation:none!important;transition:none!important}}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.serif{font-family:var(--f-display);font-weight:400}
+html[lang="fr"] [lang="en"]:not(html), html[lang="en"] [lang="fr"]:not(html){display:none!important}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:15.5px}
+.logo i{font-style:normal;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--beige);font-family:var(--f-display);font-size:19px;letter-spacing:.02em}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0 0 0 auto;padding:0;font-size:14.5px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav ul a:hover{color:var(--ink)}
+.lang{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:6px 12px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;cursor:pointer}
+.lang:hover{border-color:var(--ink)}
+@media (max-width:860px){.nav ul{display:none}.lang{margin-left:auto}}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,var(--white) 0%,var(--beige) 100%)}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,6vw,80px);align-items:center;padding-block:clamp(56px,9vw,112px)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:var(--white);border:1px solid var(--line);font-size:13.5px;font-weight:600}
+.badge b{width:8px;height:8px;border-radius:50%;background:#3F9D5B;box-shadow:0 0 0 4px rgba(63,157,91,.18)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(52px,8.4vw,104px);line-height:.95;letter-spacing:-.01em;margin-top:22px}
+.hero h1 em{color:var(--accent)}
+.hero .role{font-size:clamp(19px,2.2vw,24px);font-weight:600;margin-top:18px}
+.hero .intro{color:var(--muted);font-size:17.5px;max-width:34em;margin-top:14px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--ink);transition:transform .2s,background .2s,color .2s;cursor:pointer;background:transparent}
+.btn:hover{transform:translateY(-2px)}
+.btn.dark{background:var(--ink);color:var(--white)}
+.btn.dark:hover{background:var(--accent);border-color:var(--accent)}
+.btn:not(.dark):hover{background:var(--ink);color:var(--white)}
+.socials{display:flex;gap:18px;margin-top:28px;font-size:14px;font-weight:600}
+.socials a{text-decoration:none;border-bottom:1px solid var(--beige-2);padding-bottom:2px}
+.socials a:hover{border-color:var(--accent);color:var(--accent)}
+.portrait{position:relative;justify-self:center;width:min(380px,100%);aspect-ratio:4/5;max-width:100%}
+.portrait .frame{position:absolute;inset:0;border-radius:200px 200px var(--r) var(--r);background:var(--beige-2);overflow:hidden;display:grid;place-items:center}
+.portrait .frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.portrait .mono{font-family:var(--f-display);font-size:120px;color:var(--white);line-height:1}
+.portrait .ring{position:absolute;inset:-14px;border:1px solid var(--beige-2);border-radius:214px 214px 28px 28px;pointer-events:none}
+.portrait .chip{position:absolute;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:13px;box-shadow:0 14px 30px -18px rgba(42,35,30,.35);display:grid;gap:2px}
+.portrait .chip b{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1;color:var(--accent)}
+.portrait .c1{left:-28px;bottom:16%}
+.portrait .c2{right:-22px;top:14%}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.portrait{width:min(300px,82%);order:-1}.portrait .c1{left:-12px}.portrait .c2{right:-10px}}
+.hero .anim{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero .anim:nth-child(2){animation-delay:.08s}.hero .anim:nth-child(3){animation-delay:.16s}.hero .anim:nth-child(4){animation-delay:.24s}.hero .anim:nth-child(5){animation-delay:.32s}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+
+/* Sections */
+section{scroll-margin-top:72px}
+.sec{padding-block:clamp(64px,9vw,112px)}
+.sec.alt{background:var(--beige)}
+.head{display:flex;align-items:baseline;gap:18px;margin-bottom:44px;flex-wrap:wrap}
+.head .num{font-family:var(--f-mono);font-size:13px;color:var(--accent);letter-spacing:.08em}
+.head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,5.6vw,64px);line-height:1}
+.head p{flex-basis:100%;color:var(--muted);max-width:40em;font-size:17px}
+
+/* About */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px)}
+@media (max-width:900px){.about{grid-template-columns:1fr}}
+.about .lead{font-family:var(--f-display);font-size:clamp(25px,2.8vw,32px);line-height:1.3}
+.about .lead em{color:var(--accent)}
+.about .body{color:var(--muted);margin-top:20px;max-width:36em}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:520px){.cards{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-width:0}
+.sec.alt .card{background:var(--white)}
+.card h3{font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
+.card li b{display:block;font-weight:600}
+.card li span{color:var(--muted);font-size:14px}
+.card.wide{grid-column:1/-1}
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:6px}
+.pipeline div{background:var(--beige);border-radius:12px;padding:12px 10px;text-align:center;font-size:13px;color:var(--muted);display:grid;gap:4px}
+.pipeline div b{font-weight:700;color:var(--ink);font-size:14px}
+@media (max-width:640px){.pipeline{grid-template-columns:1fr 1fr}}
+.pills{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.pills li{font-size:13px;padding:4px 11px;border-radius:999px;background:var(--beige);border:1px solid var(--line)}
+.card ul.pills{display:flex;gap:6px}
+.card .pills li{font-size:13px}
+
+/* Projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filters button{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.filters button:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}}
+.proj{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s;text-align:left;padding:0;min-width:0}
+.proj:hover{transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(42,35,30,.45)}
+.proj.featured{grid-column:span 2}
+@media (max-width:620px){.proj.featured{grid-column:auto}}
+.cover{aspect-ratio:16/10;background:var(--beige);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.proj.featured .cover{aspect-ratio:16/8}
+.cover img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}
+.proj:hover .cover img{transform:scale(1.03)}
+.cover.type{display:grid;place-items:center;padding:22px}
+.cover.type .q{font-family:var(--f-display);font-size:clamp(20px,2.2vw,26px);line-height:1.25;text-align:center;max-width:16em}
+.cover.type .code{font-family:var(--f-mono);font-size:12.5px;color:var(--accent);margin-top:10px;text-align:center;overflow-wrap:anywhere}
+.cover.type > div{display:grid;justify-items:center}
+.cover .tag{position:absolute;top:14px;left:14px;background:var(--white);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;border:1px solid var(--line)}
+.cover .tag.live{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.pbody{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pmeta{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.04em;display:flex;justify-content:space-between;gap:10px}
+.pbody h3{font-size:19px;font-weight:700;line-height:1.3}
+.proj.featured .pbody h3{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3vw,34px);line-height:1.1}
+.pbody p{color:var(--muted);font-size:15px}
+.pbody .more{margin-top:auto;padding-top:6px;font-weight:700;font-size:14px;color:var(--accent)}
+.pbody .pills li{font-size:12px;padding:3px 9px}
+
+/* Dialog */
+dialog{border:0;padding:0;border-radius:24px;width:min(920px,calc(100% - 24px));max-height:calc(100% - 32px);background:var(--white);color:var(--ink);box-shadow:0 40px 80px -30px rgba(42,35,30,.5)}
+dialog::backdrop{background:rgba(42,35,30,.45);backdrop-filter:blur(3px)}
+.dlg{padding:clamp(22px,4vw,40px);display:grid;gap:22px}
+.dlg > *,.dlg .cols > *{min-width:0}
+.dlg-top{display:flex;justify-content:space-between;gap:16px;align-items:start}
+.dlg h3{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,4vw,44px);line-height:1.05}
+.close{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--white);cursor:pointer;font-size:20px;line-height:1}
+.close:hover{border-color:var(--ink)}
+.dlg .facts{display:flex;flex-wrap:wrap;gap:12px}
+.dlg .facts div{background:var(--beige);border-radius:14px;padding:12px 16px;min-width:140px}
+.dlg .facts b{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.1;color:var(--accent)}
+.dlg .facts span{font-size:13px;color:var(--muted)}
+.dlg h4{font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.dlg ul.points{margin:0;padding-left:18px;display:grid;gap:6px}
+.dlg .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:700px){.dlg .cols{grid-template-columns:1fr}}
+.gallery{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.gallery img{height:260px;width:auto;max-width:none;border-radius:12px;border:1px solid var(--line);scroll-snap-align:start;background:var(--beige)}
+@media (max-width:620px){.gallery img{height:200px}}
+.dlg .links{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.skills{grid-template-columns:1fr}}
+.skill{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:14px;align-content:start}
+.skill .ic{width:44px;height:44px;border-radius:12px;background:var(--beige);display:grid;place-items:center;color:var(--accent)}
+.skill .ic svg{width:22px;height:22px}
+.skill h3{font-size:17px;font-weight:700}
+
+/* Experience */
+.tl{list-style:none;margin:0;padding:0;position:relative;display:grid;gap:22px}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--beige-2)}
+.tl > li{position:relative;padding-left:40px}
+.tl > li::before{content:"";position:absolute;left:0;top:8px;width:15px;height:15px;border-radius:50%;background:var(--white);border:2px solid var(--accent)}
+.tl .box{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.tl time{font-family:var(--f-mono);font-size:12.5px;color:var(--accent);letter-spacing:.04em}
+.tl h3{font-size:20px;font-weight:700;margin-top:4px;line-height:1.3}
+.tl .where{color:var(--muted);font-size:15px}
+.tl ul{margin:12px 0 0;padding-left:18px;display:grid;gap:6px;font-size:15.5px}
+.tl .pills{margin-top:14px}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,64px)}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.contact .lead{font-family:var(--f-display);font-size:clamp(30px,3.6vw,42px);line-height:1.15}
+.clinks{display:grid;gap:10px;margin-top:28px}
+.clinks a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;background:var(--white);border:1px solid var(--line);border-radius:14px;text-decoration:none;min-width:0}
+.clinks a:hover{border-color:var(--ink)}
+.clinks span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.clinks b{font-weight:600;font-size:15px;overflow-wrap:anywhere;text-align:right}
+form{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px);display:grid;gap:16px}
+label{display:grid;gap:6px;font-size:14px;font-weight:600}
+input,textarea{font:inherit;font-weight:400;font-size:15.5px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--beige);color:var(--ink);width:100%}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);background:var(--white)}
+textarea{min-height:140px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+.formnote{font-size:13.5px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+footer nav{display:flex;gap:18px}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>AN</i>Adja Fatoumata NDAO</a>
+    <ul>
+      <li><a href="#apropos"><span lang="fr">À propos</span><span lang="en">About</span></a></li>
+      <li><a href="#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="#experiences"><span lang="fr">Expériences</span><span lang="en">Experience</span></a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="lang" id="langBtn" type="button" aria-label="Changer de langue / Switch language">EN</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="badge anim"><b aria-hidden="true"></b><span lang="fr">En recherche de stage · dès mars 2027 · Lyon</span><span lang="en">Looking for an internship · from March 2027 · Lyon</span></span>
+      <h1 class="anim">Adja Fatoumata <em>Ndao</em></h1>
+      <p class="role anim"><span lang="fr">Ingénieure Data &amp; IA</span><span lang="en">Data &amp; AI Engineer</span></p>
+      <p class="intro anim"><span lang="fr">Du Data Warehouse au chatbot WhatsApp, je construis des solutions data et IA de bout en bout : collecter, modéliser, prédire, puis rendre le résultat utilisable par de vraies personnes.</span><span lang="en">From data warehouses to WhatsApp chatbots, I build end-to-end data and AI solutions: collect, model, predict, then make the result usable by real people.</span></p>
+      <div class="cta anim">
+        <a class="btn dark" href="#projets"><span lang="fr">Voir mes projets</span><span lang="en">See my projects</span> →</a>
+        <a class="btn" href="cv-adja-ndao.pdf" target="_blank" rel="noopener"><span lang="fr">Télécharger mon CV</span><span lang="en">Download my CV</span></a>
+      </div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/adja-fatoumata-ndao-9a22aa25a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/adja2002" target="_blank" rel="noopener">GitHub</a>
+        <a href="#contact">Email</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="frame">
+        <span class="mono" aria-hidden="true">AN</span>
+        <img src="img/photo.jpg" alt="Portrait d'Adja Fatoumata Ndao" onerror="this.remove()">
+      </div>
+      <div class="chip c2"><b>0,74</b><span lang="fr">corrélation DIORES</span><span lang="en">DIORES correlation</span></div>
+      <div class="chip c1"><b>8</b><span lang="fr">projets data &amp; IA</span><span lang="en">data &amp; AI projects</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="apropos">
+  <div class="wrap">
+    <div class="head"><span class="num">01</span><h2><span lang="fr">À propos</span><span lang="en">About me</span></h2></div>
+    <div class="about">
+      <div>
+        <p class="lead"><span lang="fr">Diplômée d'un Master Business Intelligence à Dakar, aujourd'hui en M1 Informatique à Lyon. J'aime transformer <em>un besoin métier</em> en solution data qui sert vraiment.</span><span lang="en">I hold a Master's in Business Intelligence from Dakar and I'm now in a Computer Science M1 in Lyon. I like turning <em>a business need</em> into a data solution people actually use.</span></p>
+        <p class="body"><span lang="fr">Mon projet phare, DIORES, aide les bacheliers sénégalais à choisir leur filière : des modèles de Machine Learning prédisent leurs chances de réussite, et un chatbot WhatsApp leur explique le résultat. J'utilise Claude Code au quotidien pour prototyper, coder et documenter plus vite.</span><span lang="en">My flagship project, DIORES, helps Senegalese high-school graduates choose their university track: Machine Learning models predict their chances of success, and a WhatsApp chatbot explains the result. I use Claude Code daily to prototype, code and document faster.</span></p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h3>Formation</h3>
+          <ul>
+            <li><b><span lang="fr">Master 1 Informatique</span><span lang="en">MSc Computer Science (Year 1)</span></b><span>Université Lumière Lyon 2 · 2026 – 2027</span></li>
+            <li><b><span lang="fr">Master Business Intelligence</span><span lang="en">MSc Business Intelligence</span></b><span>UCAD, Dakar · 2024 – 2025</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span lang="fr">Langues</span><span lang="en">Languages</span></h3>
+          <ul>
+            <li><b><span lang="fr">Français</span><span lang="en">French</span></b><span><span lang="fr">Langue maternelle</span><span lang="en">Native</span></span></li>
+            <li><b><span lang="fr">Anglais</span><span lang="en">English</span></b><span>B1</span></li>
+          </ul>
+        </div>
+        <div class="card wide">
+          <h3><span lang="fr">Un profil, tout le pipeline Data &amp; IA</span><span lang="en">One profile, the whole Data &amp; AI pipeline</span></h3>
+          <div class="pipeline">
+            <div><b><span lang="fr">Collecter</span><span lang="en">Collect</span></b>Scraping, API</div>
+            <div><b><span lang="fr">Structurer</span><span lang="en">Model</span></b>ETL, Data Vault</div>
+            <div><b><span lang="fr">Analyser</span><span lang="en">Analyse</span></b>Power BI, OLAP</div>
+            <div><b><span lang="fr">Prédire</span><span lang="en">Predict</span></b>ML, SHAP</div>
+            <div><b><span lang="fr">Converser</span><span lang="en">Converse</span></b>LLM, RAG</div>
+          </div>
+        </div>
+        <div class="card wide">
+          <h3><span lang="fr">Savoir-être</span><span lang="en">Soft skills</span></h3>
+          <ul class="pills">
+            <li lang="fr">Esprit builder</li><li lang="fr">Rigueur</li><li lang="fr">Curiosité</li><li lang="fr">Autonomie</li><li lang="fr">Esprit d'équipe</li><li lang="fr">Pédagogie</li>
+            <li lang="en">Builder mindset</li><li lang="en">Rigour</li><li lang="en">Curiosity</li><li lang="en">Autonomy</li><li lang="en">Teamwork</li><li lang="en">Teaching</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="projets">
+  <div class="wrap">
+    <div class="head"><span class="num">02</span><h2><span lang="fr">Projets</span><span lang="en">Projects</span></h2>
+      <p><span lang="fr">Une sélection de projets en IA, data et développement. Cliquez sur un projet pour voir le détail.</span><span lang="en">A selection of AI, data and development projects. Click a project to see the details.</span></p></div>
+    <div class="filters" role="group" aria-label="Filtrer les projets" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="sec" id="competences">
+  <div class="wrap">
+    <div class="head"><span class="num">03</span><h2><span lang="fr">Compétences</span><span lang="en">Skills</span></h2></div>
+    <div class="skills">
+      <div class="skill"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></div><h3><span lang="fr">IA générative &amp; agents</span><span lang="en">Generative AI &amp; agents</span></h3><ul class="pills"><li>LLM (Claude, GPT, Mistral)</li><li>RAG</li><li>LangChain</li><li>ChromaDB</li><li>Embeddings</li><li>Prompt engineering</li></ul></div>
+      <div class="skill"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.6 7.6 11 16M16.4 7.6 13 16M8.2 6h7.6"/></svg></div><h3>Machine Learning</h3><ul class="pills"><li>Scikit-learn</li><li>CatBoost</li><li><span lang="fr">Classification</span><span lang="en">Classification</span></li><li><span lang="fr">Régression</span><span lang="en">Regression</span></li><li>Clustering</li><li>SHAP</li></ul></div>
+      <div class="skill"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></div><h3>BI &amp; Data</h3><ul class="pills"><li>Power BI</li><li>Tableau</li><li>Data Warehouse</li><li>Data Vault 2.0</li><li>SSIS</li><li>Talend</li><li>SSAS / MDX</li></ul></div>
+      <div class="skill"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6"/></svg></div><h3><span lang="fr">Bases de données &amp; Big Data</span><span lang="en">Databases &amp; Big Data</span></h3><ul class="pills"><li>SQL</li><li>PostgreSQL</li><li>SQL Server</li><li>MySQL</li><li>MongoDB</li><li>Spark</li><li>Hadoop HDFS</li></ul></div>
+      <div class="skill"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div><h3>Python &amp; API</h3><ul class="pills"><li>Python</li><li>Pandas</li><li>NumPy</li><li>FastAPI</li><li>Flask</li><li>Django</li><li>Streamlit</li><li>Twilio</li></ul></div>
+      <div class="skill"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div><h3><span lang="fr">Dev, mobile &amp; outils</span><span lang="en">Dev, mobile &amp; tools</span></h3><ul class="pills"><li>Flutter</li><li>React</li><li>Java</li><li>PHP</li><li>Docker</li><li>Git</li><li>Claude Code</li><li>n8n</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="experiences">
+  <div class="wrap">
+    <div class="head"><span class="num">04</span><h2><span lang="fr">Expériences</span><span lang="en">Experience</span></h2></div>
+    <ol class="tl">
+      <li><div class="box">
+        <time><span lang="fr">Janvier – juin 2026</span><span lang="en">January – June 2026</span></time>
+        <h3><span lang="fr">Stagiaire Ingénieure Data / IA</span><span lang="en">Data / AI Engineer Intern</span></h3>
+        <p class="where">DiCentre4AI, Université Cheikh Anta Diop · Dakar</p>
+        <ul lang="fr">
+          <li>Fusion de 7 promotions de données (2012 – 2018) via l'INE et le numéro de table : 16 019 dossiers.</li>
+          <li>Analyse exploratoire : l'âge au bac et le nombre de tentatives réduisent nettement la réussite en L1.</li>
+          <li>Comparaison de 7 algorithmes ; CatBoost et Ridge retenus, corrélation de 0,74 contre 0,40 pour Campusen.</li>
+          <li>Explicabilité SHAP, interface Streamlit et déploiement via une API REST.</li>
+        </ul>
+        <ul lang="en">
+          <li>Merged 7 cohorts of student data (2012 – 2018) using national student IDs: 16,019 records.</li>
+          <li>Exploratory analysis: age at graduation and number of attempts strongly reduce first-year success.</li>
+          <li>Benchmarked 7 algorithms; kept CatBoost and Ridge, reaching 0.74 correlation vs 0.40 for Campusen.</li>
+          <li>SHAP explainability, Streamlit interface and deployment through a REST API.</li>
+        </ul>
+        <ul class="pills"><li>Python</li><li>CatBoost</li><li>Ridge</li><li>SHAP</li><li>Streamlit</li><li>API REST</li></ul>
+      </div></li>
+      <li><div class="box">
+        <time>2024 – 2025</time>
+        <h3><span lang="fr">Mémoire de fin d'études · mention Excellente (18/20)</span><span lang="en">Master's thesis · graded Excellent (18/20)</span></h3>
+        <p class="where">Master Business Intelligence, UCAD · Dakar</p>
+        <ul lang="fr">
+          <li>Conception d'un chatbot WhatsApp d'orientation des bacheliers sur une architecture RAG.</li>
+          <li>Backend FastAPI avec webhook Twilio, agent LangChain, recherche sémantique ChromaDB et génération Mistral-Small.</li>
+          <li>Intégration des modèles de prédiction et d'un module d'explicabilité des recommandations.</li>
+        </ul>
+        <ul lang="en">
+          <li>Designed a WhatsApp chatbot guiding high-school graduates, built on a RAG architecture.</li>
+          <li>FastAPI backend with a Twilio webhook, LangChain agent, ChromaDB semantic search and Mistral-Small generation.</li>
+          <li>Integrated the prediction models and an explainability module for recommendations.</li>
+        </ul>
+        <ul class="pills"><li>LangChain</li><li>ChromaDB</li><li>Mistral</li><li>FastAPI</li><li>Twilio</li></ul>
+      </div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="head"><span class="num">05</span><h2>Contact</h2></div>
+    <div class="contact">
+      <div>
+        <p class="lead"><span lang="fr">Vous proposez un stage en IA ou en data ? Écrivez-moi, je réponds vite.</span><span lang="en">Offering an AI or data internship? Write to me, I reply quickly.</span></p>
+        <div class="clinks">
+          <a href="mailto:ndaoadjafatoumata@gmail.com"><span>Email</span><b>ndaoadjafatoumata@gmail.com</b></a>
+          <a href="https://www.linkedin.com/in/adja-fatoumata-ndao-9a22aa25a/" target="_blank" rel="noopener"><span>LinkedIn</span><b>Adja Fatoumata Ndao</b></a>
+          <a href="https://github.com/adja2002" target="_blank" rel="noopener"><span>GitHub</span><b>github.com/adja2002</b></a>
+          <a href="cv-adja-ndao.pdf" target="_blank" rel="noopener"><span>CV</span><b>PDF ↗</b></a>
+        </div>
+      </div>
+      <form id="cform" novalidate>
+        <div class="row2">
+          <label for="cname"><span lang="fr">Nom</span><span lang="en">Name</span><input id="cname" name="name" required autocomplete="name"></label>
+          <label for="cmail">Email<input id="cmail" name="email" type="email" required autocomplete="email"></label>
+        </div>
+        <label for="cmsg">Message<textarea id="cmsg" name="message" required></textarea></label>
+        <button class="btn dark" type="submit" style="justify-self:start"><span lang="fr">Préparer l'email</span><span lang="en">Prepare the email</span> →</button>
+        <p class="formnote" id="fnote"><span lang="fr">Le bouton ouvre votre messagerie avec le message pré-rempli.</span><span lang="en">The button opens your email app with the message pre-filled.</span></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><span lang="fr">Conçu et développé par</span><span lang="en">Designed and built by</span> Adja Fatoumata Ndao · 2026</span>
+    <nav aria-label="Réseaux"><a href="https://www.linkedin.com/in/adja-fatoumata-ndao-9a22aa25a/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/adja2002" target="_blank" rel="noopener">GitHub</a><a href="#top">↑ <span lang="fr">Haut de page</span><span lang="en">Back to top</span></a></nav>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlgTitle"><div class="dlg" id="dlgBody"></div></dialog>
+
+<script>
+const GH = 'https://github.com/adja2002/';
+const CATS = [
+  {id:'all', fr:'Tous', en:'All'},
+  {id:'ia', fr:'IA & NLP', en:'AI & NLP'},
+  {id:'data', fr:'Data & BI', en:'Data & BI'},
+  {id:'dev', fr:'Web & Mobile', en:'Web & Mobile'}
+];
+const PROJECTS = [
+  {id:'diores', cat:'ia', featured:true, year:'2025 – 2026', repo:'Diores_chatbot_adja', cover:'img/streamlit-resultats.jpg',
+   title:{fr:'DIORES : orienter les bacheliers avec l\'IA', en:'DIORES: guiding students with AI'},
+   short:{fr:'Modèles de prédiction de la réussite en L1 et chatbot WhatsApp RAG qui explique à chaque bachelier ses chances dans chaque filière.', en:'First-year success prediction models and a RAG WhatsApp chatbot that explains to each student their chances in every track.'},
+   stack:['Python','CatBoost','SHAP','LangChain','ChromaDB','Mistral','FastAPI','Twilio'],
+   facts:[['0,74','0.74',{fr:'corrélation, contre 0,40 pour Campusen',en:'correlation, vs 0.40 for Campusen'}],['92 %','92%',{fr:'d\'amélioration max. du classement',en:'max. ranking improvement'}],['16 019','16,019',{fr:'dossiers fusionnés (2012 – 2018)',en:'merged records (2012 – 2018)'}]],
+   problem:{fr:'À l\'UCAD, près de 91 000 étudiants se répartissent dans 600 formations et environ 66 % échouent en première année. L\'orientation actuelle repose surtout sur les notes du bac.', en:'At UCAD, about 91,000 students are spread across 600 programmes and around 66% fail their first year. Current orientation relies mostly on final exam grades.'},
+   did:{fr:['Fusion et nettoyage de 7 promotions de données via l\'INE et le numéro de table.','Analyse exploratoire et détection de biais (âge, nombre de tentatives au bac).','Comparaison de 7 algorithmes : CatBoost (réussite) et Ridge (score de classement).','Explicabilité SHAP et interface Streamlit de test.','Chatbot WhatsApp : agent LangChain, ChromaDB, Mistral-Small, webhook FastAPI et Twilio.'],
+        en:['Merged and cleaned 7 student cohorts using national IDs.','Exploratory analysis and bias detection (age, number of attempts).','Benchmarked 7 algorithms: CatBoost (success) and Ridge (ranking score).','SHAP explainability and a Streamlit test interface.','WhatsApp chatbot: LangChain agent, ChromaDB, Mistral-Small, FastAPI webhook and Twilio.']},
+   gallery:['img/methodologie.jpg','img/streamlit-resultats.jpg','img/wa-universites.jpg','img/wa-profil.jpg','img/wa-resultat.jpg','img/wa-explication.jpg','img/poster-diores.jpg'],
+   extra:[{href:'img/poster-diores.jpg', fr:'Poster scientifique', en:'Scientific poster'}]},
+  {id:'kws', cat:'data', year:'2024 – 2025', repo:'projet_datavault_KWS', cover:'img/kws-kpi.jpg',
+   title:{fr:'Data Warehouse Data Vault 2.0 pour KWS', en:'Data Vault 2.0 warehouse for KWS'},
+   short:{fr:'Entrepôt historisé pour un distributeur de produits automobiles, chargé par SSIS et restitué dans Power BI.', en:'Historised warehouse for an automotive parts distributor, loaded with SSIS and reported in Power BI.'},
+   stack:['Python','SQL Server','Data Vault 2.0','SSIS','Power BI'],
+   problem:{fr:'KWS, spécialisée dans la distribution de produits automobiles, avait besoin d\'une vision claire de ses ventes, produits et commerciaux.', en:'KWS, an automotive parts distributor, needed a clear view of its sales, products and sales reps.'},
+   did:{fr:['Nettoyage et harmonisation des données en Python, puis couche de staging.','Modélisation Data Vault 2.0 (Hubs, Links, Satellites) sous SQL Server, avec historisation.','Packages SSIS d\'automatisation du chargement (staging, Data Vault, DataMart).','DataMart analytique et rapport Power BI de 4 pages : questions métier, KPI, produits, tendances.'],
+        en:['Cleaned and harmonised data in Python, then a staging layer.','Data Vault 2.0 model (Hubs, Links, Satellites) in SQL Server with full history.','SSIS packages automating the loads (staging, Data Vault, DataMart).','Analytical DataMart and a 4-page Power BI report: business questions, KPIs, products, trends.']},
+   gallery:['img/kws-pipeline.jpg','img/kws-kpi.jpg','img/kws-dashboard.jpg','img/kws-tendances.jpg']},
+  {id:'diag', cat:'ia', year:'2024', repo:'prediction_cancer_diab-te', cover:'img/diag-accueil.jpg',
+   title:{fr:'Diagnostic du cancer du sein et du diabète', en:'Breast cancer and diabetes diagnosis'},
+   short:{fr:'Modèles Naive Bayes et KNN évalués puis intégrés dans une application web Flask de diagnostic.', en:'Naive Bayes and KNN models, evaluated then shipped in a Flask diagnosis web app.'},
+   stack:['Python','Pandas','Scikit-learn','Flask'],
+   facts:[['95,9 %','95.9%',{fr:'accuracy sur le cancer du sein',en:'accuracy on breast cancer'}]],
+   problem:{fr:'Aider au pré-diagnostic à partir de mesures cliniques, avec une interface simple à utiliser.', en:'Support pre-diagnosis from clinical measurements, with an easy-to-use interface.'},
+   did:{fr:['Prétraitement et normalisation des données.','Entraînement et comparaison de Naive Bayes et KNN (accuracy, précision, rappel, F1-score).','Sauvegarde des modèles et application Flask avec un formulaire par maladie.'],
+        en:['Data preprocessing and normalisation.','Trained and compared Naive Bayes and KNN (accuracy, precision, recall, F1-score).','Saved the models and built a Flask app with one form per disease.']},
+   gallery:['img/diag-accueil.jpg','img/diag-cancer.jpg','img/diag-diabete.jpg']},
+  {id:'voix', cat:'ia', year:'2025', repo:'projetNLP_creation_basededonnees_vocal',
+   type:{q:{fr:'« ajouter Marie dans client »', en:'“ajouter Marie dans client”'}, code:'→ INSERT INTO client (nom) VALUES (?)'},
+   title:{fr:'Voix2SQL : piloter une base de données à la voix', en:'Voice2SQL: drive a database by voice'},
+   short:{fr:'Des commandes en français, dictées ou tapées, transformées en requêtes SQL sécurisées.', en:'French commands, spoken or typed, turned into safe SQL queries.'},
+   stack:['Python','spaCy','NLTK','SpeechRecognition','SQLite','Flask'],
+   problem:{fr:'Permettre de créer, remplir et interroger une base de données sans écrire de SQL.', en:'Create, fill and query a database without writing SQL.'},
+   did:{fr:['Reconnaissance vocale (Speech-to-Text) et analyse du français avec spaCy et NLTK.','Correction phonétique et orthographique des mots mal reconnus.','Détection de l\'intention : créer, insérer, afficher, modifier, supprimer.','Génération de SQL paramétré contre les injections, confirmation avant suppression.','Interface web Flask et ligne de commande.'],
+        en:['Speech-to-Text and French language analysis with spaCy and NLTK.','Phonetic and spelling correction of misrecognised words.','Intent detection: create, insert, select, update, delete.','Parameterised SQL against injections, confirmation before deletion.','Flask web interface and command line.']}},
+  {id:'uefa', cat:'data', year:'2025', repo:'projet_streamlit_',
+   type:{q:{fr:'Ligue des champions 2023/24', en:'Champions League 2023/24'}, code:'125 matchs · scraping → Plotly'},
+   title:{fr:'UEFA Champions League : scraping et dataviz', en:'UEFA Champions League: scraping and dataviz'},
+   short:{fr:'Application Streamlit qui collecte, nettoie et raconte toute la saison 2023/24 en graphiques interactifs.', en:'Streamlit app that collects, cleans and tells the whole 2023/24 season through interactive charts.'},
+   stack:['Python','Streamlit','Plotly','Pandas','Scraping'],
+   problem:{fr:'Récupérer toutes les données d\'une saison et les rendre explorables, du global au détail.', en:'Gather a full season of data and make it explorable, from overview to detail.'},
+   did:{fr:['Collecte des 125 matchs, classements, compositions et événements via l\'API UEFA, avec repli sur le JSON des pages.','Données organisées en trois couches : brutes, nettoyées, métriques.','7 pages : aperçu, scraper, traitement, matchs, équipes, joueurs, histoire de la saison.','Filtres persistants et cache Streamlit pour une navigation rapide.'],
+        en:['Collected 125 matches, standings, line-ups and events via the UEFA API, with a fallback on page JSON.','Data organised in three layers: raw, processed, metrics.','7 pages: overview, scraper, processing, matches, teams, players, season story.','Persistent filters and Streamlit caching for fast navigation.']}},
+  {id:'retail', cat:'data', year:'2024 – 2025', repo:'ETL_superstore_project',
+   type:{q:{fr:'Solution décisionnelle Retail', en:'Retail decision-support solution'}, code:'Sources → SSIS → DW → SSAS → Power BI'},
+   title:{fr:'Superstore : ETL, cube OLAP et Power BI', en:'Superstore: ETL, OLAP cube and Power BI'},
+   short:{fr:'Chaîne BI complète sur les données Superstore, de l\'entrepôt au tableau de bord.', en:'A complete BI chain on Superstore data, from warehouse to dashboard.'},
+   stack:['SQL Server','SSIS','SSAS','Power BI'],
+   problem:{fr:'Piloter la performance d\'un distributeur à partir d\'indicateurs fiables.', en:'Steer a retailer\'s performance with reliable indicators.'},
+   did:{fr:['Conception du Data Warehouse et des KPI retail.','Flux ETL avec SSIS.','Cube OLAP avec SSAS pour l\'analyse multidimensionnelle.','Tableau de bord Power BI.'],
+        en:['Designed the data warehouse and retail KPIs.','ETL flows with SSIS.','SSAS OLAP cube for multidimensional analysis.','Power BI dashboard.']}},
+  {id:'film', cat:'dev', year:'2024', repo:'projet_flutter_gestion_de_film',
+   type:{q:{fr:'Films populaires, recherche, avis', en:'Popular films, search, reviews'}, code:'Flutter · API TMDB · Hive'},
+   title:{fr:'Application mobile de films en Flutter', en:'Flutter movie app'},
+   short:{fr:'Parcourir et rechercher des films, voir la bande-annonce, garder ses favoris et ses avis hors ligne.', en:'Browse and search films, watch trailers, keep favourites and reviews offline.'},
+   stack:['Flutter','Dart','API TMDB','Provider','Hive'],
+   problem:{fr:'Une application mobile complète consommant une API externe.', en:'A complete mobile app consuming an external API.'},
+   did:{fr:['Films populaires et recherche via l\'API TMDB.','Fiche détaillée avec bande-annonce.','Favoris et avis utilisateurs stockés hors ligne avec Hive.','Gestion d\'état avec Provider.'],
+        en:['Popular films and search via the TMDB API.','Detail page with trailer.','Favourites and user reviews stored offline with Hive.','State management with Provider.']}},
+  {id:'chatbi', cat:'ia', year:'2026', wip:true,
+   type:{q:{fr:'« Quel est le CA par région ce trimestre ? »', en:'“What is revenue by region this quarter?”'}, code:'→ LLM + RAG → SQL → graphique'},
+   title:{fr:'ChatBI : interroger ses données en langage naturel', en:'ChatBI: query your data in plain language'},
+   short:{fr:'Assistant de BI conversationnelle qui traduit une question métier en requête SQL, puis répond avec le chiffre et le graphique.', en:'Conversational BI assistant that turns a business question into SQL, then answers with the figure and a chart.'},
+   stack:['LLM','RAG','Text-to-SQL','Python'],
+   problem:{fr:'Rendre les données accessibles à des personnes qui ne savent pas écrire de SQL.', en:'Make data accessible to people who cannot write SQL.'},
+   did:{fr:['Projet en cours de développement.'], en:['Work in progress.']}}
+];
+
+let lang = 'fr', filter = 'all';
+try { const s = localStorage.getItem('lang'); if (s === 'en' || s === 'fr') lang = s; } catch(e) {}
+const t = o => (o && typeof o === 'object' && !Array.isArray(o)) ? o[lang] : o;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function setLang(l){
+  lang = l; document.documentElement.lang = l;
+  document.getElementById('langBtn').textContent = l === 'fr' ? 'EN' : 'FR';
+  try { localStorage.setItem('lang', l); } catch(e) {}
+  renderFilters(); renderGrid();
+}
+function renderFilters(){
+  document.getElementById('filters').innerHTML = CATS.map(c =>
+    `<button type="button" data-f="${c.id}" aria-pressed="${c.id===filter}">${esc(c[lang])}</button>`).join('');
+}
+function cover(p){
+  const tag = p.wip ? `<span class="tag live">${lang==='fr'?'En cours':'In progress'}</span>` : (p.featured ? `<span class="tag">${lang==='fr'?'Projet phare':'Flagship'}</span>` : '');
+  if (p.cover) return `<div class="cover">${tag}<img src="${p.cover}" alt="" loading="lazy"></div>`;
+  return `<div class="cover type">${tag}<div><p class="q">${esc(t(p.type.q))}</p><p class="code">${esc(p.type.code)}</p></div></div>`;
+}
+function renderGrid(){
+  const list = PROJECTS.filter(p => filter === 'all' || p.cat === filter);
+  document.getElementById('grid').innerHTML = list.map(p => `
+    <article class="proj${p.featured && filter==='all' ? ' featured' : ''}" data-id="${p.id}" tabindex="0" role="button" aria-label="${esc(t(p.title))}">
+      ${cover(p)}
+      <div class="pbody">
+        <div class="pmeta"><span>${esc(CATS.find(c=>c.id===p.cat)[lang])}</span><span>${p.year}</span></div>
+        <h3>${esc(t(p.title))}</h3>
+        <p>${esc(t(p.short))}</p>
+        <ul class="pills">${p.stack.slice(0,5).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>
+        <span class="more">${lang==='fr'?'Voir le projet':'View project'} →</span>
+      </div>
+    </article>`).join('');
+}
+function openProject(id){
+  const p = PROJECTS.find(x => x.id === id); if (!p) return;
+  const L = lang === 'fr';
+  const facts = p.facts ? `<div class="facts">${p.facts.map(f=>`<div><b>${L?f[0]:f[1]}</b><span>${esc(t(f[2]))}</span></div>`).join('')}</div>` : '';
+  const gal = p.gallery ? `<div><h4>${L?'Aperçu':'Preview'}</h4><div class="gallery">${p.gallery.map(g=>`<a href="${g}" target="_blank" rel="noopener"><img src="${g}" alt="${esc(t(p.title))}" loading="lazy"></a>`).join('')}</div></div>` : '';
+  const links = [
+    p.repo ? `<a class="btn dark" href="${GH+p.repo}" target="_blank" rel="noopener">${L?'Voir le code sur GitHub':'View code on GitHub'} ↗</a>` : '',
+    ...(p.extra||[]).map(e=>`<a class="btn" href="${e.href}" target="_blank" rel="noopener">${esc(e[lang])} ↗</a>`)
+  ].join('');
+  document.getElementById('dlgBody').innerHTML = `
+    <div class="dlg-top"><div><p class="pmeta" style="justify-content:flex-start;gap:14px"><span>${esc(CATS.find(c=>c.id===p.cat)[lang])}</span><span>${p.year}</span></p>
+      <h3 id="dlgTitle">${esc(t(p.title))}</h3></div>
+      <button class="close" type="button" aria-label="${L?'Fermer':'Close'}">×</button></div>
+    ${facts}
+    <div class="cols">
+      <div><h4>${L?'Contexte':'Context'}</h4><p>${esc(t(p.problem))}</p></div>
+      <div><h4>${L?'Ce que j\'ai fait':'What I did'}</h4><ul class="points">${t(p.did).map(d=>`<li>${esc(d)}</li>`).join('')}</ul></div>
+    </div>
+    ${gal}
+    <div><h4>Stack</h4><ul class="pills">${p.stack.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>
+    ${links ? `<div class="links">${links}</div>` : ''}`;
+  const d = document.getElementById('dlg');
+  if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open','');
+}
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('button[data-f]'); if (!b) return;
+  filter = b.dataset.f; renderFilters(); renderGrid();
+});
+document.getElementById('grid').addEventListener('click', e => {
+  const b = e.target.closest('.proj'); if (b) openProject(b.dataset.id);
+});
+document.getElementById('grid').addEventListener('keydown', e => {
+  const b = e.target.closest('.proj'); if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openProject(b.dataset.id); }
+});
+const dlg = document.getElementById('dlg');
+dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('.close')) dlg.close(); });
+document.getElementById('langBtn').addEventListener('click', () => setLang(lang === 'fr' ? 'en' : 'fr'));
+document.getElementById('cform').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target, note = document.getElementById('fnote');
+  if (!f.reportValidity()) return;
+  const subj = (lang==='fr' ? 'Contact portfolio — ' : 'Portfolio contact — ') + f.name.value;
+  const body = f.message.value + '\n\n' + f.name.value + ' · ' + f.email.value;
+  window.location.href = 'mailto:ndaoadjafatoumata@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+  note.textContent = lang==='fr' ? 'Votre messagerie devrait s\'ouvrir. Sinon, écrivez directement à ndaoadjafatoumata@gmail.com.' : 'Your email app should open. If not, write directly to ndaoadjafatoumata@gmail.com.';
+});
+setLang(lang);
+</script>
+</body>
+</html>
